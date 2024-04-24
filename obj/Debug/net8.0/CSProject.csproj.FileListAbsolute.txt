@@ -15,3 +15,4 @@ C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\ref\CSProject.d
 C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathNet.Numerics.dll
 C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.csproj.AssemblyReference.cache
 C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.csproj.Up2Date
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.sourcelink.json

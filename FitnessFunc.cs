@@ -12,17 +12,21 @@ namespace CSProject
         double maxFitness;
         Func<double[], double> fitnessFunc;
         double lowerBound, upperBound;
+        double[] functionCalls;
+        int maxFunctionCalls;
 
         Func<double[], double>[] fitnessFuncs = [Ackley1Function, Schwefel1_2Function, Alpine1Function, Alpine2Function, Schwefel2_20Function, SphereFunction, Step3Function, ZakharovFunction, XinSheYangFunction, Trigonometric1Function];
 
         double[] upperBounds = [35, 100, 10, 10, 100, 10, 100, 100, 5, Math.PI];
         double[] lowerBounds = [-35, -100, -10, 0, -100, 0, -100, -100, -5, 0];
 
-        public FitnessFunc(int i)
+        public FitnessFunc(int i, int maxFunctionCalls)
         {
             fitnessFunc = fitnessFuncs[i];
             count = 0;
             maxFitness = double.MaxValue;
+            this.maxFunctionCalls = maxFunctionCalls;
+            functionCalls = new double[maxFunctionCalls];
 
             lowerBound = lowerBounds[i];
             upperBound = upperBounds[i];
@@ -34,6 +38,16 @@ namespace CSProject
             maxFitness = double.MaxValue;
         }
 
+        public int getMaxFunctionCalls()
+        {
+            return maxFunctionCalls;
+        }
+
+        public double[] getFunctionCalls()
+        {
+            return functionCalls;
+        }
+
         public double evaluate(double[] x)
         {
             count++;
@@ -42,6 +56,9 @@ namespace CSProject
 
             if(fitness < maxFitness)
                 maxFitness = fitness;
+
+            if(count < maxFunctionCalls)
+                functionCalls[count - 1] = maxFitness;
 
             return fitness;
         }

@@ -455,7 +455,7 @@ public class Project
         return [iterations, fitnessFunc(population[0]), stopwatch.Elapsed.TotalMilliseconds];
     }
 
-    static public void Main(String[] args)
+    /*static public void Main(String[] args)
     {
         int n = 100;
         int iterations = 300;
@@ -641,5 +641,5 @@ public class Project
                 sw.WriteLine("lr6 = -1*[" + String.Join(" ", ga6) + "]./10;");
             }*/
 
-        }
+        
 }

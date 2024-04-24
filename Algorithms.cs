@@ -185,7 +185,7 @@ public class Algorithms
         return new Triple(child, m, v);
     }
 
-    public Pair[] convertToPairsArray(double[][] population)
+    public static Pair[] convertToPairsArray(double[][] population)
     {
         Pair[] pairsPop = new Pair[population.Length];
 
@@ -197,7 +197,7 @@ public class Algorithms
         return pairsPop;
     }
 
-    public Triple[] convertToTriplesArray(double[][] population)
+    public static Triple[] convertToTriplesArray(double[][] population)
     {
         Triple[] triplesPop = new Triple[population.Length];
 
@@ -228,7 +228,7 @@ public class Algorithms
         return gradient;
     }
 
-    public void RandomGA(double[][] pop, FitnessFunc fitnessFunc)
+    public static double[] RandomGA(double[][] pop, FitnessFunc fitnessFunc)
     {
         double[][] population = (double[][])pop.Clone();
 
@@ -244,7 +244,7 @@ public class Algorithms
 
         int iterations = 0;
 
-        while (fitnessFunc.getCount() <= 50000)
+        while (fitnessFunc.getCount() <= fitnessFunc.getMaxFunctionCalls())
         {
             iterations++;
 
@@ -285,11 +285,12 @@ public class Algorithms
             {
                 return fitnessFunc.evaluate(x).CompareTo(fitnessFunc.evaluate(y));
             });
-
         }
+
+        return fitnessFunc.getFunctionCalls();
     }
 
-    public void GradientDescentGA(double[][] pop, FitnessFunc fitnessFunc, double learningRate)
+    public static double[] GradientDescentGA(double[][] pop, FitnessFunc fitnessFunc, double learningRate)
     {
         double[][] population = (double[][])pop.Clone();
 
@@ -305,7 +306,7 @@ public class Algorithms
 
         int iterations = 0;
 
-        while (fitnessFunc.getCount() <= 50000)
+        while (fitnessFunc.getCount() <= fitnessFunc.getMaxFunctionCalls())
         {
             iterations++;
 
@@ -345,9 +346,11 @@ public class Algorithms
             });
 
         }
+
+        return fitnessFunc.getFunctionCalls();
     }
 
-    public void AdaGradGA(double[][] pop, FitnessFunc fitnessFunc, double initialLearningRate, double epsilon = 1e-8)
+    public static double[] AdaGradGA(double[][] pop, FitnessFunc fitnessFunc, double initialLearningRate, double epsilon = 1e-8)
     {
         Pair[] population = convertToPairsArray(pop);
 
@@ -363,7 +366,7 @@ public class Algorithms
 
         int iterations = 0;
 
-        while (fitnessFunc.getCount() <= 50000)
+        while (fitnessFunc.getCount() <= fitnessFunc.getMaxFunctionCalls())
         {
             iterations++;
 
@@ -414,9 +417,11 @@ public class Algorithms
             });
 
         }
+
+        return fitnessFunc.getFunctionCalls();
     }
 
-    public void RMSPropGA(double[][] pop, FitnessFunc fitnessFunc, double initialLearningRate, double beta = 0.9, double epsilon = 1e-8)
+    public static double[] RMSPropGA(double[][] pop, FitnessFunc fitnessFunc, double initialLearningRate, double beta = 0.9, double epsilon = 1e-8)
     {
         Pair[] population = convertToPairsArray(pop);
 
@@ -432,7 +437,7 @@ public class Algorithms
 
         int iterations = 0;
 
-        while (fitnessFunc.getCount() <= 50000)
+        while (fitnessFunc.getCount() <= fitnessFunc.getMaxFunctionCalls())
         {
             iterations++;
 
@@ -477,9 +482,11 @@ public class Algorithms
                 return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
             });
         }
+
+        return fitnessFunc.getFunctionCalls();
     }
 
-    public void AdamGA(double[][] pop, FitnessFunc fitnessFunc, double initialLearningRate, double beta1 = 0.9, double beta2 = 0.999, double epsilon = 1e-8)
+    public static double[] AdamGA(double[][] pop, FitnessFunc fitnessFunc, double initialLearningRate, double beta1 = 0.9, double beta2 = 0.999, double epsilon = 1e-8)
     {
         Triple[] population = convertToTriplesArray(pop);
 
@@ -495,7 +502,7 @@ public class Algorithms
 
         int iterations = 0;
 
-        while (fitnessFunc.getCount() <= 50000)
+        while (fitnessFunc.getCount() <= fitnessFunc.getMaxFunctionCalls())
         {
             iterations++;
 
@@ -553,5 +560,7 @@ public class Algorithms
                 return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
             });
         }
+
+        return fitnessFunc.getFunctionCalls();
     }
 }
