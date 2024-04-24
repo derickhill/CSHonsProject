@@ -20,9 +20,25 @@ namespace CSProject
             last = (double[])second.Clone();
         }
 
-        public double[] First { get { return first; } }
+        public Triple(double[] x, double[] y, double[] z)
+        {
+            first = x;
+            second = y;
+            last = z;
+        }
 
-        public double[] Second { get { return second; } }
-        public double[] Last { get { return last; } }
+        public double[] First()
+        {
+            return first;
+        }
+
+        public double[] Second()
+        {
+            return second;
+        }
+        public double[] Last()
+        {
+            return last;
+        }
     }
 }

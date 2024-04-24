@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSProject
 {
-    class Pair
+    public class Pair
     {
         double[] first, last;
 
@@ -17,7 +17,19 @@ namespace CSProject
             Array.Fill(last, 0);
         }
 
-        public double[] First { get { return first; } }
-        public double[] Last { get { return last; } }
+        public Pair(double[] x, double[] y)
+        {
+            first = x;
+            last = y;
+        }
+
+        public double[] First()
+        { 
+            return first; 
+        }
+        public double[] Last()
+        { 
+            return last;
+        }
     }
 }
