@@ -1,5 +1,6 @@
 ﻿using CSProject;
 using MathNet.Numerics;
+using MathNet.Numerics.Distributions;
 using System;
 using System.Security.Cryptography.X509Certificates;
 
@@ -415,13 +416,142 @@ public class Algorithms
         }
     }
 
-    public void RMSPropGA(double[][] population, FitnessFunc fitnessFunc, double initialLearningRate)
+    public void RMSPropGA(double[][] pop, FitnessFunc fitnessFunc, double initialLearningRate, double beta = 0.9, double epsilon = 1e-8)
     {
+        Pair[] population = convertToPairsArray(pop);
 
+        int dim = population[0].First().Length;
+
+        double[] upperBound = fitnessFunc.getUpperBound(dim);
+        double[] lowerBound = fitnessFunc.getLowerBound(dim);
+
+        Array.Sort(population, (x, y) =>
+        {
+            return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
+        });
+
+        int iterations = 0;
+
+        while (fitnessFunc.getCount() <= 50000)
+        {
+            iterations++;
+
+            Pair[] tempPopulation = new Pair[population.Length];
+            int tempPopulationSize = 0;
+
+            tempPopulation[0] = population[0];
+            tempPopulationSize++;
+
+            while (tempPopulationSize < population.Length)
+            {
+                Pair[] parents = select2(tempPopulation, tempPopulationSize, fitnessFunc);
+
+                Pair crossedOver = coinFlipCrossover(parents[0], parents[1]);
+
+                Pair mutated;
+
+                double[] gradient = ApproximateGradient(fitnessFunc, crossedOver.First());
+
+                double[] individual = crossedOver.First();
+                double[] squaredGradientSums = crossedOver.Last();
+
+                for (int i = 0; i < dim; i++)
+                {
+                    squaredGradientSums[i] = beta * squaredGradientSums[i] + (1 - beta) * Math.Pow(gradient[i], 2);
+
+                    individual[i] -= (initialLearningRate / Math.Sqrt(squaredGradientSums[i]) + epsilon) * gradient[i];
+
+                    individual[i] = Math.Min(Math.Max(individual[i], lowerBound[i]), upperBound[i]);
+                }
+
+                mutated = new Pair(individual, squaredGradientSums);
+
+                tempPopulation[tempPopulationSize] = mutated;
+                tempPopulationSize++;
+            }
+
+            population = tempPopulation;
+
+            Array.Sort(population, (x, y) =>
+            {
+                return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
+            });
+        }
     }
 
-    public void AdamGA(double[][] population, FitnessFunc fitnessFunc, double initialLearningRate)
+    public void AdamGA(double[][] pop, FitnessFunc fitnessFunc, double initialLearningRate, double beta1 = 0.9, double beta2 = 0.999, double epsilon = 1e-8)
     {
+        Triple[] population = convertToTriplesArray(pop);
 
+        int dim = population[0].First().Length;
+
+        double[] upperBound = fitnessFunc.getUpperBound(dim);
+        double[] lowerBound = fitnessFunc.getLowerBound(dim);
+
+        Array.Sort(population, (x, y) =>
+        {
+            return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
+        });
+
+        int iterations = 0;
+
+        while (fitnessFunc.getCount() <= 50000)
+        {
+            iterations++;
+
+            Triple[] tempPopulation = new Triple[population.Length];
+            int tempPopulationSize = 0;
+
+            tempPopulation[0] = population[0];
+            tempPopulationSize++;
+
+            while (tempPopulationSize < population.Length)
+            {
+                Triple[] parents = select2(tempPopulation, tempPopulationSize, fitnessFunc);
+
+                Triple crossedOver = coinFlipCrossover(parents[0], parents[1]);
+
+                Triple mutated;
+
+                double[] gradient = ApproximateGradient(fitnessFunc, crossedOver.First());
+
+                double[] individual = crossedOver.First();
+                double[] m = crossedOver.Second();
+                double[] v = crossedOver.Last();
+
+                for (int j = 0; j < dim; j++)
+                {
+                    // Update biased first moment estimate
+                    m[j] = beta1 * m[j] + (1 - beta1) * gradient[j];
+
+                    // Update biased second raw moment estimate
+                    v[j] = beta2 * v[j] + (1 - beta2) * Math.Pow(gradient[j], 2);
+
+                    // Bias-corrected first moment estimate
+                    double mHat = m[j] / (1 - Math.Pow(beta1, iterations - 1));
+
+                    // Bias-corrected second raw moment estimate
+                    double vHat = v[j] / (1 - Math.Pow(beta2, iterations - 1));
+
+                    // Update parameters
+                    individual[j] -= initialLearningRate * mHat / (Math.Sqrt(vHat) + epsilon);
+
+                    // Apply boundary constraints
+                    individual[j] = Math.Min(Math.Max(individual[j], lowerBound[j]), upperBound[j]);
+                }
+
+                mutated = new Triple(individual, m, v);
+
+                tempPopulation[tempPopulationSize] = mutated;
+                tempPopulationSize++;
+            }
+
+            population = tempPopulation;
+
+            Array.Sort(population, (x, y) =>
+            {
+                return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
+            });
+        }
     }
 }
