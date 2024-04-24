@@ -1,0 +1,17 @@
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\CSProject.exe
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\CSProject.deps.json
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\CSProject.runtimeconfig.json
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\CSProject.dll
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\CSProject.pdb
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.AssemblyInfoInputs.cache
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.AssemblyInfo.cs
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.csproj.CoreCompileInputs.cache
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.dll
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\refint\CSProject.dll
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.pdb
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.genruntimeconfig.cache
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\ref\CSProject.dll
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathNet.Numerics.dll
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.csproj.AssemblyReference.cache
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.csproj.Up2Date
