@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CSProject
@@ -19,13 +20,8 @@ namespace CSProject
 
         private static void writeToTextFile(string path, double[] functionCalls)
         {
-            using (StreamWriter sw = new StreamWriter(path, true))
-            {
-                foreach(double call in functionCalls)
-                {
-                    sw.WriteLine(call.ToString());
-                }
-            }
+            string jsonString = JsonSerializer.Serialize(functionCalls);
+            File.WriteAllText(path + ".json", jsonString);
         }
 
         public static void Main(string[] args)
@@ -70,8 +66,8 @@ namespace CSProject
 
                         functionCalls = Algorithms.RandomGA(populations[i], fitnessFunc);
                         fitnessFunc.reset();
-                        path = folder + "random_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i + ".txt"; ;
-                        makeTextFile(path);
+                        path = folder + "random_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
+
                         writeToTextFile(path, functionCalls);
 
                         Console.WriteLine("Random done");
@@ -83,7 +79,7 @@ namespace CSProject
                             Console.WriteLine("-------------------------------------------------------------");
 
                                 functionCalls = Algorithms.GradientDescentGA(populations[i], fitnessFunc, learningRate);
-                                path = folder + "gd_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i + ".txt";
+                                path = folder + "gd_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
                                 makeTextFile(path);
                                 writeToTextFile(path, functionCalls);
                                 fitnessFunc.reset();
@@ -91,24 +87,21 @@ namespace CSProject
                             Console.WriteLine("GD done");
 
                                 functionCalls = Algorithms.AdaGradGA(populations[i], fitnessFunc, learningRate);
-                                path = folder + "adagrad_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i + ".txt"; ;
-                                makeTextFile(path);
+                                path = folder + "adagrad_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
                                 writeToTextFile(path, functionCalls);
                                 fitnessFunc.reset();
                             
                             Console.WriteLine("AdaGrad done");
 
                                 functionCalls = Algorithms.RMSPropGA(populations[i], fitnessFunc, learningRate);
-                                path = folder + "rmsprop_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i + ".txt";
-                                makeTextFile(path);
+                                path = folder + "rmsprop_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
                                 writeToTextFile(path, functionCalls);
                                 fitnessFunc.reset();
                             
                             Console.WriteLine("RMSProp done");
 
                                 functionCalls = Algorithms.AdamGA(populations[i], fitnessFunc, learningRate);
-                                path = folder + "adam_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i + ".txt";
-                                makeTextFile(path);
+                                path = folder + "adam_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
                                 writeToTextFile(path, functionCalls);
                                 fitnessFunc.reset();
                             Console.WriteLine("Adam done");
@@ -118,6 +111,8 @@ namespace CSProject
                     }
 
                 }
+
+
             }
         }
     }
