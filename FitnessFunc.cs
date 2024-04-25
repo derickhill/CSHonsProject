@@ -57,7 +57,7 @@ namespace CSProject
             if(fitness < maxFitness)
                 maxFitness = fitness;
 
-            if(count < maxFunctionCalls)
+            if(count <= maxFunctionCalls)
                 functionCalls[count - 1] = maxFitness;
 
             return fitness;
