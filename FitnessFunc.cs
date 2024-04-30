@@ -73,6 +73,63 @@ namespace CSProject
             return count;
         }
 
+        public double[] getBest(double[][] population, int populationSize)
+        {
+            double minFitness = double.MaxValue;
+            double[] best = population[0];
+
+            for(int i = 0; i < populationSize; i++)
+            {
+                double curFitness = evaluate(population[i]);
+
+                if(curFitness < minFitness)
+                {
+                    minFitness = curFitness;
+                    best = population[i];
+                }
+            }
+
+            return best;
+        }
+
+        public Pair getBest(Pair[] population, int populationSize)
+        {
+            double minFitness = double.MaxValue;
+            Pair best = population[0];
+
+            for (int i = 0; i < populationSize; i++)
+            {
+                double curFitness = evaluate(population[i].First());
+
+                if (curFitness < minFitness)
+                {
+                    minFitness = curFitness;
+                    best = population[i];
+                }
+            }
+
+            return best;
+        }
+
+        public Triple getBest(Triple[] population, int populationSize)
+        {
+            double minFitness = double.MaxValue;
+            Triple best = population[0];
+
+            for (int i = 0; i < populationSize; i++)
+            {
+                double curFitness = evaluate(population[i].First());
+
+                if (curFitness < minFitness)
+                {
+                    minFitness = curFitness;
+                    best = population[i];
+                }
+            }
+
+            return best;
+        }
+
         public double[] getLowerBound(int dim)
         {
             double[] lb = new double[dim];

@@ -237,11 +237,6 @@ public class Algorithms
         double[] upperBound = fitnessFunc.getUpperBound(dim);
         double[] lowerBound = fitnessFunc.getLowerBound(dim);
 
-        Array.Sort(population, (x, y) =>
-        {
-            return fitnessFunc.evaluate(x).CompareTo(fitnessFunc.evaluate(y));
-        });
-
         int iterations = 0;
 
         while (fitnessFunc.getCount() <= fitnessFunc.getMaxFunctionCalls())
@@ -251,7 +246,7 @@ public class Algorithms
             double[][] tempPopulation = new double[population.Length][];
             int tempPopulationSize = 0;
 
-            tempPopulation[0] = population[0];
+            tempPopulation[0] = fitnessFunc.getBest(population, population.Length);
             tempPopulationSize++;
 
             while (tempPopulationSize < population.Length)
@@ -280,11 +275,6 @@ public class Algorithms
             }
 
             population = tempPopulation;
-
-            Array.Sort(population, (x, y) =>
-            {
-                return fitnessFunc.evaluate(x).CompareTo(fitnessFunc.evaluate(y));
-            });
         }
 
         return fitnessFunc.getFunctionCalls();
@@ -299,11 +289,6 @@ public class Algorithms
         double[] upperBound = fitnessFunc.getUpperBound(dim);
         double[] lowerBound = fitnessFunc.getLowerBound(dim);
 
-        Array.Sort(population, (x, y) =>
-        {
-            return fitnessFunc.evaluate(x).CompareTo(fitnessFunc.evaluate(y));
-        });
-
         int iterations = 0;
 
         while (fitnessFunc.getCount() <= fitnessFunc.getMaxFunctionCalls())
@@ -313,7 +298,7 @@ public class Algorithms
             double[][] tempPopulation = new double[population.Length][];
             int tempPopulationSize = 0;
 
-            tempPopulation[0] = population[0];
+            tempPopulation[0] = fitnessFunc.getBest(population, population.Length);
             tempPopulationSize++;
 
             while (tempPopulationSize < population.Length)
@@ -340,11 +325,6 @@ public class Algorithms
 
             population = tempPopulation;
 
-            Array.Sort(population, (x, y) =>
-            {
-                return fitnessFunc.evaluate(x).CompareTo(fitnessFunc.evaluate(y));
-            });
-
         }
 
         return fitnessFunc.getFunctionCalls();
@@ -359,11 +339,6 @@ public class Algorithms
         double[] upperBound = fitnessFunc.getUpperBound(dim);
         double[] lowerBound = fitnessFunc.getLowerBound(dim);
 
-        Array.Sort(population, (x, y) =>
-        {
-            return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
-        });
-
         int iterations = 0;
 
         while (fitnessFunc.getCount() <= fitnessFunc.getMaxFunctionCalls())
@@ -373,7 +348,7 @@ public class Algorithms
             Pair[] tempPopulation = new Pair[population.Length];
             int tempPopulationSize = 0;
 
-            tempPopulation[0] = population[0];
+            tempPopulation[0] = fitnessFunc.getBest(population, population.Length);
             tempPopulationSize++;
 
             while (tempPopulationSize < population.Length)
@@ -411,11 +386,6 @@ public class Algorithms
 
             population = tempPopulation;
 
-            Array.Sort(population, (x, y) =>
-            {
-                return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
-            });
-
         }
 
         return fitnessFunc.getFunctionCalls();
@@ -430,11 +400,6 @@ public class Algorithms
         double[] upperBound = fitnessFunc.getUpperBound(dim);
         double[] lowerBound = fitnessFunc.getLowerBound(dim);
 
-        Array.Sort(population, (x, y) =>
-        {
-            return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
-        });
-
         int iterations = 0;
 
         while (fitnessFunc.getCount() <= fitnessFunc.getMaxFunctionCalls())
@@ -444,7 +409,7 @@ public class Algorithms
             Pair[] tempPopulation = new Pair[population.Length];
             int tempPopulationSize = 0;
 
-            tempPopulation[0] = population[0];
+            tempPopulation[0] = fitnessFunc.getBest(population, population.Length);
             tempPopulationSize++;
 
             while (tempPopulationSize < population.Length)
@@ -476,11 +441,6 @@ public class Algorithms
             }
 
             population = tempPopulation;
-
-            Array.Sort(population, (x, y) =>
-            {
-                return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
-            });
         }
 
         return fitnessFunc.getFunctionCalls();
@@ -495,11 +455,6 @@ public class Algorithms
         double[] upperBound = fitnessFunc.getUpperBound(dim);
         double[] lowerBound = fitnessFunc.getLowerBound(dim);
 
-        Array.Sort(population, (x, y) =>
-        {
-            return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
-        });
-
         int iterations = 0;
 
         while (fitnessFunc.getCount() <= fitnessFunc.getMaxFunctionCalls())
@@ -509,7 +464,7 @@ public class Algorithms
             Triple[] tempPopulation = new Triple[population.Length];
             int tempPopulationSize = 0;
 
-            tempPopulation[0] = population[0];
+            tempPopulation[0] = fitnessFunc.getBest(population, population.Length);
             tempPopulationSize++;
 
             while (tempPopulationSize < population.Length)
@@ -554,11 +509,6 @@ public class Algorithms
             }
 
             population = tempPopulation;
-
-            Array.Sort(population, (x, y) =>
-            {
-                return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
-            });
         }
 
         return fitnessFunc.getFunctionCalls();

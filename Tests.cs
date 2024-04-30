@@ -9,15 +9,6 @@ namespace CSProject
 {
     class Tests
     {
-        private static void makeTextFile(string path)
-        {
-            // Create a file to write to.
-            using (StreamWriter sw = File.CreateText(path))
-            {
-                sw.WriteLine("%DateTime: " + DateTime.Now.ToString());
-            }
-        }
-
         private static void writeToTextFile(string path, double[] functionCalls)
         {
             string jsonString = JsonSerializer.Serialize(functionCalls);
@@ -26,6 +17,9 @@ namespace CSProject
 
         public static void Main(string[] args)
         {
+            int product = 15 * 10 * 6 * 20;
+            double percentage = 0;
+
             int maxFunctionCalls = 50000;
             int n = 100;
 
@@ -33,14 +27,17 @@ namespace CSProject
 
             string path;
             string folder = "Results/";
-            for (int i = 0; i < 30; i++)
+
+            for (int i = 0; i < 15; i++)
             {
                 // Fitness functions
                 for (int j = 0; j < 10; j++)
                 {
-                    Console.WriteLine("-------------------------------------------------------------");
+                    Console.WriteLine("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
+                    Console.WriteLine("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
                     Console.WriteLine("Fitness function " + j);
-                    Console.WriteLine("-------------------------------------------------------------");
+                    Console.WriteLine("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
+                    Console.WriteLine("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
 
                     FitnessFunc fitnessFunc = new(j, maxFunctionCalls);
 
@@ -48,65 +45,76 @@ namespace CSProject
 
                     foreach (int dim in dimensions)
                     {
-                        Console.WriteLine("-------------------------------------------------------------");
+                        Console.WriteLine("--------------------------------------------------------------------------------------");
                         Console.WriteLine("Dimensions: " + dim);
-                        Console.WriteLine("-------------------------------------------------------------");
-
-                        double[][][] populations = new double[15][][];
-
-                        // Generate 15 unique populations
-                        for (int k = 0; k < 15; k++)
-                        {
-                            populations[k] = Algorithms.initialisePopulation(fitnessFunc.getLowerBound(dim), fitnessFunc.getUpperBound(dim), n);
-                        }
+                        Console.WriteLine("--------------------------------------------------------------------------------------");
 
                         double[] learningRates = [0.0001, 0.001, 0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.2, 1.3, 1.6, 1.7, 1.8, 1.9, 2];
 
                         int p = 0;
 
-                        functionCalls = Algorithms.RandomGA(populations[i], fitnessFunc);
-                        fitnessFunc.reset();
-                        path = folder + "random_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
-
-                        writeToTextFile(path, functionCalls);
-
-                        Console.WriteLine("Random done");
+                        double[][] population = Algorithms.initialisePopulation(fitnessFunc.getLowerBound(dim), fitnessFunc.getUpperBound(dim), n);
 
                         foreach (double learningRate in learningRates)
                         {
-                            Console.WriteLine("-------------------------------------------------------------");
+                            Console.WriteLine("------------------------------------------");
                             Console.WriteLine("Learning rate:" + learningRate);
-                            Console.WriteLine("-------------------------------------------------------------");
+                            Console.WriteLine("------------------------------------------");
 
-                                functionCalls = Algorithms.GradientDescentGA(populations[i], fitnessFunc, learningRate);
-                                path = folder + "gd_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
-                                makeTextFile(path);
-                                writeToTextFile(path, functionCalls);
-                                fitnessFunc.reset();
+                            functionCalls = Algorithms.RandomGA(population, fitnessFunc);
+                            fitnessFunc.reset();
+                            path = folder + "random_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
+                            writeToTextFile(path, functionCalls);
+
+                            Console.WriteLine("Random done");
+                            /*
+                            functionCalls = Algorithms.GradientDescentGA(population, fitnessFunc, learningRate);
+                            path = folder + "gd_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
+                            writeToTextFile(path, functionCalls);
+                            fitnessFunc.reset();
                             
                             Console.WriteLine("GD done");
-
-                                functionCalls = Algorithms.AdaGradGA(populations[i], fitnessFunc, learningRate);
-                                path = folder + "adagrad_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
-                                writeToTextFile(path, functionCalls);
-                                fitnessFunc.reset();
+                            */
+                            functionCalls = Algorithms.AdaGradGA(population, fitnessFunc, learningRate);
+                            path = folder + "adagrad_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
+                            writeToTextFile(path, functionCalls);
+                            fitnessFunc.reset();
                             
                             Console.WriteLine("AdaGrad done");
 
-                                functionCalls = Algorithms.RMSPropGA(populations[i], fitnessFunc, learningRate);
-                                path = folder + "rmsprop_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
-                                writeToTextFile(path, functionCalls);
-                                fitnessFunc.reset();
+                             functionCalls = Algorithms.RMSPropGA(population, fitnessFunc, learningRate);
+                            path = folder + "rmsprop_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
+                            writeToTextFile(path, functionCalls);
+                            fitnessFunc.reset();
                             
                             Console.WriteLine("RMSProp done");
 
-                                functionCalls = Algorithms.AdamGA(populations[i], fitnessFunc, learningRate);
-                                path = folder + "adam_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
-                                writeToTextFile(path, functionCalls);
-                                fitnessFunc.reset();
+                            functionCalls = Algorithms.AdamGA(population, fitnessFunc, learningRate);
+                            path = folder + "adam_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
+                            writeToTextFile(path, functionCalls);
+                            fitnessFunc.reset();
                             Console.WriteLine("Adam done");
 
                             p++;
+
+                            percentage++;
+                            double percent = Math.Floor(percentage / product * 100);
+
+                            string loadingBar = "|";
+
+                            for(int f = 0; f < percent; f++)
+                            {
+                                loadingBar += "=";
+                            }
+
+                            for(int g = 0; g < 100 - (int)percent; g++)
+                            {
+                                loadingBar += " ";
+                            }
+
+                            loadingBar += "|";
+
+                            Console.WriteLine((loadingBar) + percent + "%");
                         }
                     }
 
