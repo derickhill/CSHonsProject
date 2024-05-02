@@ -127,7 +127,9 @@ namespace CSProject
 
             }
 
-           // MLApp.MLApp matlab = new MLApp.MLApp();
+            MLApp.MLApp matlab = new MLApp.MLApp();
+
+            matlab.Execute(folder + "projectplots1.m");
         }
     }
 }
