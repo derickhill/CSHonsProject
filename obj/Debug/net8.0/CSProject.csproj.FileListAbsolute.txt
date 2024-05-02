@@ -16,3 +16,8 @@ C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathNet.Numeric
 C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.csproj.AssemblyReference.cache
 C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.csproj.Up2Date
 C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.sourcelink.json
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\dotnetcli_netcore.dll
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathWorks.MATLAB.Engine.dll
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathWorks.MATLAB.Types.dll
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathWorks.MATLAB.Engine.xml
+C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathWorks.MATLAB.Types.xml

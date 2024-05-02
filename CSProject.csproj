@@ -11,4 +11,16 @@
     <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="dotnetcli_netcore">
+      <HintPath>..\..\..\..\..\..\Program Files\MATLAB\R2024a\bin\win64\dotnetcli_netcore.dll</HintPath>
+    </Reference>
+    <Reference Include="MathWorks.MATLAB.Engine">
+      <HintPath>..\..\..\..\..\..\Program Files\MATLAB\R2024a\extern\dotnet\netstandard2.0\MathWorks.MATLAB.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="MathWorks.MATLAB.Types">
+      <HintPath>..\..\..\..\..\..\Program Files\MATLAB\R2024a\extern\dotnet\netstandard2.0\MathWorks.MATLAB.Types.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

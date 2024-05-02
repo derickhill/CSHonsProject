@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using MathWorks.MATLAB.Engine;
+using MathWorks.MATLAB.Exceptions;
+using MathWorks.MATLAB.Types;
+
 
 namespace CSProject
 {
@@ -67,14 +71,14 @@ namespace CSProject
                             writeToTextFile(path, functionCalls);
 
                             Console.WriteLine("Random done");
-                            /*
+ /*                           
                             functionCalls = Algorithms.GradientDescentGA(population, fitnessFunc, learningRate);
                             path = folder + "gd_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
                             writeToTextFile(path, functionCalls);
                             fitnessFunc.reset();
                             
                             Console.WriteLine("GD done");
-                            */
+  */                         
                             functionCalls = Algorithms.AdaGradGA(population, fitnessFunc, learningRate);
                             path = folder + "adagrad_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
                             writeToTextFile(path, functionCalls);
@@ -84,7 +88,7 @@ namespace CSProject
 
                              functionCalls = Algorithms.RMSPropGA(population, fitnessFunc, learningRate);
                             path = folder + "rmsprop_dim" + dim + "_lr" + p + "_ff" + j + "_iter" + i;
-                            writeToTextFile(path, functionCalls);
+                             writeToTextFile(path, functionCalls);
                             fitnessFunc.reset();
                             
                             Console.WriteLine("RMSProp done");
@@ -122,6 +126,8 @@ namespace CSProject
 
 
             }
+
+           // MLApp.MLApp matlab = new MLApp.MLApp();
         }
     }
 }

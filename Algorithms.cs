@@ -44,12 +44,7 @@ public class Algorithms
             tournament[i] = population[rnd];
         }
 
-        Array.Sort(tournament, (x, y) =>
-        {
-            return fitnessFunc.evaluate(x).CompareTo(fitnessFunc.evaluate(y));
-        });
-
-        return tournament[0];
+        return fitnessFunc.getBest(population, populationSize);
     }
 
     public static Pair tournamentSelection(Pair[] population, int populationSize, FitnessFunc fitnessFunc)
@@ -67,12 +62,7 @@ public class Algorithms
             tournament[i] = population[rnd];
         }
 
-        Array.Sort(tournament, (x, y) =>
-        {
-            return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
-        });
-
-        return tournament[0];
+        return fitnessFunc.getBest(population, populationSize);
     }
 
     public static Triple tournamentSelection(Triple[] population, int populationSize, FitnessFunc fitnessFunc)
@@ -90,12 +80,7 @@ public class Algorithms
             tournament[i] = population[rnd];
         }
 
-        Array.Sort(tournament, (x, y) =>
-        {
-            return fitnessFunc.evaluate(x.First()).CompareTo(fitnessFunc.evaluate(y.First()));
-        });
-
-        return tournament[0];
+        return fitnessFunc.getBest(population, populationSize);
     }
 
     public static double[][] select2(double[][] population, int populationSize, FitnessFunc fitnessFunc)
@@ -490,10 +475,10 @@ public class Algorithms
                     v[j] = beta2 * v[j] + (1 - beta2) * Math.Pow(gradient[j], 2);
 
                     // Bias-corrected first moment estimate
-                    double mHat = m[j] / (1 - Math.Pow(beta1, iterations - 1));
+                    double mHat = m[j] / (1 - Math.Pow(beta1, iterations));
 
                     // Bias-corrected second raw moment estimate
-                    double vHat = v[j] / (1 - Math.Pow(beta2, iterations - 1));
+                    double vHat = v[j] / (1 - Math.Pow(beta2, iterations));
 
                     // Update parameters
                     individual[j] -= initialLearningRate * mHat / (Math.Sqrt(vHat) + epsilon);

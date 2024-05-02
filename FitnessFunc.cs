@@ -146,12 +146,14 @@ namespace CSProject
         }
 
         // -35 <= xi <= 35
+        // min at (0, 0, 0, ... , 0) and is 0
         private static double Ackley1Function(double[] x)
         {
             return -20 * Math.Exp(-0.02 * Math.Sqrt((1 / (x.Length * 1.0)) * x.Sum(x_i => x_i * x_i))) - Math.Exp((1 / (x.Length * 1.0)) * x.Sum(x_i => Math.Cos(2 * Math.PI * x_i))) + 20 + Math.E;
         }
 
         // -100 <= xi <= 100
+        // min at (0, 0, 0, ... , 0) and is 0
         private static double Schwefel1_2Function(double[] x)
         {
             double fitness = 0;
@@ -172,12 +174,14 @@ namespace CSProject
         }
 
         // -10 <= xi <= 10
+        // min at (0, 0, 0, ... , 0) and is 0
         private static double Alpine1Function(double[] x)
         {
             return x.Sum(x_i => Math.Abs(x_i * Math.Sin(x_i) + 0.1 * x_i));
         }
 
         // 0 <= xi <= 10
+        // min at (7.917, 7.917, 7.917, ... , 7.917) and is 2.808^D
         private static double Alpine2Function(double[] x)
         {
             double product = 1;
@@ -187,28 +191,32 @@ namespace CSProject
                 product *= Math.Sqrt(x[i]) * Math.Sin(x[i]);
             }
 
-            return product;
+            return -1 * product;
         }
 
         // -100 <= xi <= 100
+        // min at (0, 0, 0, ... , 0) and is 0
         private static double Schwefel2_20Function(double[] x)
         {
             return -1 * x.Sum(Math.Abs);
         }
 
         // 0 <= xi <= 10
+        // min at (0, 0, 0, ... , 0) and is 0
         private static double SphereFunction(double[] x)
         {
             return x.Sum(x_i => Math.Pow(x_i, 2));
         }
 
         // -100 <= xi <= 100
+        // min at (0, 0, 0, ... , 0) and is 0
         private static double Step3Function(double[] x)
         {
             return x.Sum(x_i => Math.Floor(Math.Pow(x_i, 2)));
         }
 
         // -100 <= xi <= 100
+        // min at (0, 0, 0, ... , 0) and is 0
         private static double ZakharovFunction(double[] x)
         {
             double sum1 = x.Sum(x_i => Math.Pow(x_i, 2));
@@ -224,6 +232,7 @@ namespace CSProject
         }
 
         // -5 <= xi <= 5
+        // min at (0, 0, 0, ... , 0) and is 0
         private static double XinSheYangFunction(double[] x)
         {
             double sum = 0;
@@ -232,13 +241,14 @@ namespace CSProject
 
             for (int i = 0; i < x.Length; i++)
             {
-                sum += random.Next(0, 1) * Math.Pow(Math.Abs(x[i]), (i + 1));
+                sum += random.NextDouble() * Math.Pow(Math.Abs(x[i]), (i + 1));
             }
 
             return sum;
         }
 
         // 0 <= xi <= pi
+        // min at (0, 0, 0, ... , 0) and is 0
         private static double Trigonometric1Function(double[] x)
         {
             double sum = 0;
