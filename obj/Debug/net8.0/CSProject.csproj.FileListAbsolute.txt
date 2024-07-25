@@ -21,3 +21,5 @@ C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathWorks.MATLA
 C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathWorks.MATLAB.Types.dll
 C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathWorks.MATLAB.Engine.xml
 C:\Users\plane\source\repos\CSProject\CSProject\bin\Debug\net8.0\MathWorks.MATLAB.Types.xml
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\Interop.MLApp.dll
+C:\Users\plane\source\repos\CSProject\CSProject\obj\Debug\net8.0\CSProject.csproj.ResolveComReference.cache

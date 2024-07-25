@@ -8,7 +8,7 @@ namespace CSProject
 {
     public class FitnessFunc
     {
-        int count;
+        public int count;
         double maxFitness;
         Func<double[], double> fitnessFunc;
         double lowerBound, upperBound;
@@ -17,8 +17,8 @@ namespace CSProject
 
         Func<double[], double>[] fitnessFuncs = [Ackley1Function, Schwefel1_2Function, Alpine1Function, Alpine2Function, Schwefel2_20Function, SphereFunction, Step3Function, ZakharovFunction, XinSheYangFunction, Trigonometric1Function];
 
-        double[] upperBounds = [35, 100, 10, 10, 100, 10, 100, 100, 5, Math.PI];
-        double[] lowerBounds = [-35, -100, -10, 0, -100, 0, -100, -100, -5, 0];
+        double[] upperBounds = [35, 100, 10, 10, 100, 10, 100, 10, 5, Math.PI];
+        double[] lowerBounds = [-35, -100, -10, 0, -100, 0, -100, -5, -5, 0];
 
         public FitnessFunc(int i, int maxFunctionCalls)
         {
@@ -36,6 +36,7 @@ namespace CSProject
         {
             count = 0;
             maxFitness = double.MaxValue;
+            functionCalls = new double[maxFunctionCalls];
         }
 
         public int getMaxFunctionCalls()
@@ -198,7 +199,7 @@ namespace CSProject
         // min at (0, 0, 0, ... , 0) and is 0
         private static double Schwefel2_20Function(double[] x)
         {
-            return -1 * x.Sum(Math.Abs);
+            return x.Sum(Math.Abs);
         }
 
         // 0 <= xi <= 10
@@ -215,7 +216,7 @@ namespace CSProject
             return x.Sum(x_i => Math.Floor(Math.Pow(x_i, 2)));
         }
 
-        // -100 <= xi <= 100
+        // -5 <= xi <= 10
         // min at (0, 0, 0, ... , 0) and is 0
         private static double ZakharovFunction(double[] x)
         {
